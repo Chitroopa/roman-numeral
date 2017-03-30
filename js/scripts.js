@@ -6,13 +6,8 @@ var romanConverter = function (number) {
  {
    alert("Please enter a number between 1 - 4000");
  }
-
  for (var index=0;index<romanNumber.length;index ++)
  {
-  //  if(romanNumber[index] === number)
-  //  {
-  //    console.log(romanLetter[index]);
-  //  }
    var quotient = Math.floor(number / romanNumber[index]);
    var remainder = number % romanNumber[index];
    if (quotient <4)
@@ -20,31 +15,26 @@ var romanConverter = function (number) {
      for (var j=0; j<quotient && quotient>0 ;j++ )
      {
        converted += romanLetter[index];
-      //  console.log(romanLetter[index]);
      }
    }
     else
    {
      converted += romanLetter[index] + romanLetter[index-1];
    }
-
    number = remainder;
  }
   converted = converted.replace(/VIV/, "IX");
   converted = converted.replace(/LXL/, "XC");
   converted = converted.replace(/DCD/, "CM");
-  
-  console.log(converted);
+  return converted;
 }
-
-
-
 
 $(document).ready(function(){
   $("#form1").submit(function(event){
     event.preventDefault();
     var userInput = parseInt($("#input").val());
     var result = romanConverter(userInput);
-    console.log(result);
+    $("#result").text(result);
+    $("#result-div").show();
   });
 });
