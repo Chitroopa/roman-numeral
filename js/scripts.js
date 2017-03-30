@@ -15,14 +15,26 @@ var romanConverter = function (number) {
   //  }
    var quotient = Math.floor(number / romanNumber[index]);
    var remainder = number % romanNumber[index];
-   for (var j=0; j<quotient && quotient>0 ;j++ )
+   if (quotient <4)
    {
-     converted += romanLetter[index];
-    //  console.log(romanLetter[index]);
+     for (var j=0; j<quotient && quotient>0 ;j++ )
+     {
+       converted += romanLetter[index];
+      //  console.log(romanLetter[index]);
+     }
    }
+    else
+   {
+     converted += romanLetter[index] + romanLetter[index-1];
+   }
+
    number = remainder;
  }
- console.log(converted);
+  converted = converted.replace(/VIV/, "IX");
+  converted = converted.replace(/LXL/, "XC");
+  converted = converted.replace(/DCD/, "CM");
+  
+  console.log(converted);
 }
 
 
